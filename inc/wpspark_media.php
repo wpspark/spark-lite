@@ -21,6 +21,11 @@ class WPSpark_Media{
             'update_callback' => null,
             'schema'          => null,
         ));
+        register_rest_field( 'post',  'spark_user', array(
+            'get_callback'    => array($this, 'wpspark_add_spark_user'), 
+            'update_callback' => null,
+            'schema'          => null,
+        ));
     }
     public function wpspark_add_spark_media($object, $field_name, $request){
         $featured_img_array = wp_get_attachment_image_src(
@@ -31,6 +36,20 @@ class WPSpark_Media{
         
         if($featured_img_array){
             return $featured_img_array[0];
+        }else{
+            return null;
+        }
+    }
+    public function wpspark_add_spark_user($object, $field_name, $request){
+        $user_data = get_the_author_meta( 'nicename', $object['author'] );
+        $user_name = get_the_author_meta( 'nicename', $object['author'] );
+        $user_slug = get_the_author_meta( 'nicename', $object['author'] );
+        $user_avatar_url = get_avatar_url( $object['author'] );
+        $user_avatar = (object) array('wordpress_96' => $user_avatar_url);
+        $user_all = (object) array('avatar_urls' => $user_avatar)   ;
+        $all_data = (object) array('name' => $user_name, 'slug' => $user_name, 'avatar_urls' => $user_avatar);
+        if($user_data){
+            return $all_data;
         }else{
             return null;
         }
