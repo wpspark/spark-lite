@@ -33,8 +33,9 @@ foreach($files as $file){
 }
 
 function wpspark_core_load(){
-    WPSpark_Sitedata::init();
-    WPSpark_Media::init();
+    WPSpark_Route_Sitedata::init();
+    WPSpark_Rest_Field_Media::init();
+    WPSpark_Rest_Field_User::init();
 }
 add_action('plugins_loaded', 'wpspark_core_load');
 

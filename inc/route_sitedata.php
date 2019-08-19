@@ -1,5 +1,5 @@
 <?php
-class WPSpark_Sitedata{
+class WPSpark_Route_Sitedata{
 
     private static $instance;
 
