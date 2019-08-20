@@ -34,6 +34,7 @@ foreach($files as $file){
 
 function wpspark_core_load(){
     WPSpark_Route_Sitedata::init();
+    WPSpark_Route_Userdata::init();
     WPSpark_Rest_Field_Media::init();
     WPSpark_Rest_Field_User::init();
 }
